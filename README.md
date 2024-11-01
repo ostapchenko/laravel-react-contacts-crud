@@ -10,6 +10,7 @@ This is a demo application that demonstrates how to build a full-stack web appli
 
 - PHP 8.3 or later
 - Composer 2 or later
+- Docker and Docker Compose to run via Laravel Sail
 
 ## Getting Started
 
