@@ -112,6 +112,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
             user?.email_verified_at
         )
             router.push(redirectIfAuthenticated)
+
         if (middleware === 'auth' && error) logout()
     }, [user, error])
 
@@ -123,5 +124,6 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         resetPassword,
         resendEmailVerification,
         logout,
+        csrf,
     }
 }

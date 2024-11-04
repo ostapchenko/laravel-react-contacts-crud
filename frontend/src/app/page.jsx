@@ -1,4 +1,4 @@
-import LoginLinks from './LoginLinks'
+import LoginLinks from '@/app/LoginLinks'
 
 export const metadata = {
     title: 'App',

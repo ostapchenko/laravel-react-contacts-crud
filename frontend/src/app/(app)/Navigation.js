@@ -15,6 +15,8 @@ const Navigation = ({ user }) => {
 
     const [open, setOpen] = useState(false)
 
+    let pathname = usePathname()
+
     return (
         <nav className="bg-white border-b border-gray-100">
             {/* Primary Navigation Menu */}
@@ -32,8 +34,14 @@ const Navigation = ({ user }) => {
                         <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <NavLink
                                 href="/home"
-                                active={usePathname() === '/home'}>
+                                active={pathname === '/home'}>
                                 Home
+                            </NavLink>
+
+                            <NavLink
+                                href="/contacts"
+                                active={pathname.startsWith('/contacts')}>
+                                Contacts
                             </NavLink>
                         </div>
                     </div>
@@ -107,8 +115,14 @@ const Navigation = ({ user }) => {
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink
                             href="/home"
-                            active={usePathname() === '/home'}>
+                            active={pathname === '/home'}>
                             Home
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink
+                            href="/contacts"
+                            active={pathname.startsWith('/contacts')}>
+                            Contacts
                         </ResponsiveNavLink>
                     </div>
 
