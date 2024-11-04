@@ -1,4 +1,5 @@
 import { Nunito } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
 import '@/app/global.css'
 
 const nunitoFont = Nunito({
@@ -9,7 +10,10 @@ const nunitoFont = Nunito({
 const RootLayout = ({ children }) => {
     return (
         <html lang="en" className={nunitoFont.className}>
-            <body className="antialiased">{children}</body>
+            <body className="antialiased">
+                {children}
+                <Toaster />
+            </body>
         </html>
     )
 }

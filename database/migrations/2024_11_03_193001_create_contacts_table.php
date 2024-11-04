@@ -15,10 +15,13 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name_first');
             $table->string('name_last');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('phone');
             $table->foreignId('created_by')->constrained('users');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->unique(['email', 'deleted_at'], 'contacts_email_unique_idx');
         });
     }
 

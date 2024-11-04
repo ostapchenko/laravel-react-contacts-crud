@@ -1,24 +1,22 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import axios from '@/lib/axios'
-import Loading from '@/app/(app)/Loading'
+import Loader from '@/components/Loader'
+import { useContacts } from '@/hooks/contacts'
+import ContactDeleteLink from '@/app/(app)/contacts/_components/ContactDeleteLink'
+import toast from 'react-hot-toast'
 
 export default function ContactsTable() {
-    const [contacts, setContacts] = useState([])
+    const { contacts, destroy } = useContacts()
 
-    const [loading, setLoading] = useState(true)
+    const handleDelete = async (id) => {
+        await destroy(id)
 
-    useEffect(() => {
-        axios.get('/api/contacts').then((response) => {
-            setLoading(false)
-            setContacts(response.data.data)
-        })
-    })
+        toast.success('Contact successfully deleted.')
+    }
 
-    if (loading) {
-        return <Loading />
+    if (!Array.isArray(contacts)) {
+        return <Loader />
     }
 
     return (
@@ -63,22 +61,26 @@ export default function ContactsTable() {
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                    {contacts.map((contact) => (
-                    <tr key={contact.id}>
-                        <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-0">{contact.name_first}</td>
-                        <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{contact.name_last}</td>
-                        <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{contact.email}</td>
-                        <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{contact.phone}</td>
-                        <td className="relative py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-0">
-                            <Link
-                                href={`/contacts/${contact.id}`}
-                                className="text-emerald-600 hover:text-emerald-900"
-                            >
-                                Edit<span className="sr-only">, {contact.name}</span>
-                            </Link>
-                        </td>
-                    </tr>
-                    ))}
+                    {
+                        Array.isArray(contacts) &&
+                        contacts.map((contact) => (
+                            <tr key={contact.id}>
+                                <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-0">{contact.name_first}</td>
+                                <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{contact.name_last}</td>
+                                <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{contact.email}</td>
+                                <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{contact.phone}</td>
+                                <td className="relative py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-0">
+                                    <Link
+                                        href={`/contacts/${contact.id}/edit`}
+                                        className="text-emerald-600 hover:text-emerald-900"
+                                    >
+                                        Edit<span className="sr-only">, {contact.name}</span>
+                                    </Link>
+                                    <ContactDeleteLink contact={contact} onDelete={handleDelete} />
+                                </td>
+                            </tr>
+                        ))
+                    }
                 </tbody>
                 </table>
             </div>

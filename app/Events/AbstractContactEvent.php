@@ -3,8 +3,9 @@
 namespace App\Events;
 
 use App\Models\Contact;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PrivateChannel;
+// use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -28,8 +29,10 @@ abstract class AbstractContactEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('contacts'),
-            new PrivateChannel('contacts.'.$this->contact->id),
+            // authentication is not part of this demo so we will use a public channel
+            // for the real usage private channel should be used because
+            // this functionality is behind the authentication
+            new Channel('contacts'),
         ];
     }
 }

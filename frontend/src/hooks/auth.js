@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 import axios from '@/lib/axios'
+import csrf from '@/hooks/csrf'
 import { useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 
@@ -7,7 +8,11 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     const router = useRouter()
     const params = useParams()
 
-    const { data: user, error, mutate } = useSWR('/api/user', () =>
+    const {
+        data: user,
+        error,
+        mutate,
+    } = useSWR('/api/user', () =>
         axios
             .get('/api/user')
             .then(res => res.data)
@@ -17,8 +22,6 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
                 router.push('/verify-email')
             }),
     )
-
-    const csrf = () => axios.get('/sanctum/csrf-cookie')
 
     const register = async ({ setErrors, ...props }) => {
         await csrf()
@@ -124,6 +127,5 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         resetPassword,
         resendEmailVerification,
         logout,
-        csrf,
     }
 }

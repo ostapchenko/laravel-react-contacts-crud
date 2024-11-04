@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contact extends Model
 {
     use HasFactory;
     use HasUuids;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -32,6 +34,6 @@ class Contact extends Model
 
     public function logs(): HasMany
     {
-        return $this->hasMany(ContactLog::class);
+        return $this->hasMany(ContactLog::class)->latest();
     }
 }

@@ -11,7 +11,7 @@ const LoginLinks = () => {
             {user ? (
                 <Link
                     href="/home"
-                    className="ml-4 text-3xl text-gray-700 underline xs:text-xl"
+                    className="ml-4 text-3xl text-gray-700 underline cursor-pointer xs:text-xl"
                 >
                     Home Page
                 </Link>
@@ -19,14 +19,14 @@ const LoginLinks = () => {
                 <>
                     <Link
                         href="/login"
-                        className="text-3xl text-gray-700 underline xs:text-xl"
+                        className="text-3xl text-gray-700 underline cursor-pointer xs:text-xl"
                     >
                         Login
                     </Link>
 
                     <Link
                         href="/register"
-                        className="ml-4 text-3xl text-gray-700 underline xs:text-xl"
+                        className="ml-4 text-3xl text-gray-700 underline cursor-pointer xs:text-xl"
                     >
                         Register
                     </Link>

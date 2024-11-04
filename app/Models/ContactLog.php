@@ -22,6 +22,8 @@ class ContactLog extends Model
         'value_new',
     ];
 
+    protected $with = ['user'];
+
     public function contact()
     {
         return $this->belongsTo(Contact::class);

@@ -37,7 +37,7 @@ class ContactController extends Controller
 
         return response()->json(
             new ContactResource($contact),
-            201
+            201 // HTTP status code for "Created"
         );
     }
 
@@ -74,11 +74,13 @@ class ContactController extends Controller
 
         try {
             $contact->save();
+
             DB::commit();
         } catch (\Throwable $e) {
-            // if we encounter an error updating the contact
+            // if we encounter any error when updating the contact
             // we will rollback the logs as well:
             DB::rollBack();
+
             throw $e;
         }
 
