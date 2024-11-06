@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 
 class Contact extends Model
 {
@@ -25,6 +26,10 @@ class Contact extends Model
         'name_last',
         'email',
         'phone',
+    ];
+
+    protected $casts = [
+        'phone' => E164PhoneNumberCast::class.':US',
     ];
 
     public function createdBy(): BelongsTo

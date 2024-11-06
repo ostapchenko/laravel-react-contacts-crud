@@ -26,7 +26,7 @@ class UpdateContactRequest extends FormRequest
             'name_first' => ['required', 'string'],
             'name_last' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:contacts,email,'.$this->contact->id],
-            'phone' => ['required', 'phone'],
+            'phone' => ['required', 'phone:international,US'],
         ];
     }
 }
