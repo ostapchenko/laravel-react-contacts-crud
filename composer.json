@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "ostapchenko/laravel-react-contacts-crud",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "Laravel React Contacts CRUD Demo",
+    "keywords": ["laravel","react","nextjs","contacts","crud","demo"],
     "license": "MIT",
     "require": {
         "php": "^8.3",
