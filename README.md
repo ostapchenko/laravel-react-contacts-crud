@@ -1,6 +1,6 @@
 # Laravel + React Contacts CRUD Demo Application
 
-This is a demo application that demonstrates how to build a full-stack web application using Laravel and React. The application allows users to create, read, update, and delete contacts.
+This is a demo application that demonstrates how to build a full-stack web application using Laravel and React.
 
 ## Features
 
@@ -9,6 +9,8 @@ This is a demo application that demonstrates how to build a full-stack web appli
 - Real-Time Contact List updates via WebSockets
 - Auth, Registration, Password Reset, App Layout were not in scope for this demo so they were added from [Laravel Breeze](https://laravel.com/docs/11.x/starter-kits#breeze-and-next) starter kit
 - For the backend application structure, I didn't follow any specific approach to decouple logic from the controllers, I just tried to keep it simple and clean and show the main features of Laravel
+
+![Screencast](resources/media/screencast.gif)
 
 ## Technologies
 
@@ -49,6 +51,8 @@ Install PHP dependencies:
 composer install
 ```
 
+Note: If you have running outdated PHP version locally, you can add `--ignore-platform-reqs` flag to the command above. Once you have the dependencies loaded I recommend to run everything inside the container.
+
 Run the application containers using Laravel Sail:
 
 ```bash
@@ -88,7 +92,7 @@ But to be able to run it via sail shortcut command you will need to add the argu
 For example to install NPM dependencies:
 
 ```bash
-./vendor/bin/sail npm --prefix ./frontend
+./vendor/bin/sail npm --prefix ./frontend install
 ```
 
 Then to run development server:
